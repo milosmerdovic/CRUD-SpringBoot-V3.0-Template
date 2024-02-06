@@ -22,4 +22,26 @@ public interface UserService {
      */
     Optional<User> getUserById(Long id);
 
+    /**
+     * Adds a user to the system.
+     *
+     * @param  user  the user to be added
+     */
+    void addUser(User user);
+
+    /**
+     * Updates a user.
+     *
+     * @param  user  the user object to be updated
+     */
+    void updateUser(User user);
+
+    /**
+     * Removes a user from the system.
+     *
+     * @param  id  of the user to be removed
+     */
+    void removeUser(Long id);
+
+
 }
