@@ -28,16 +28,12 @@ public class UserServiceJUnitTest {
 
     @Test
     public void testGetAllUsers() {
-        // Pozivamo servis da dobijemo listu svih korisnika
         List<User> result = userService.getUsers();
 
-        // Proveravamo da li je rezultat null
         assertThat(result).isNotNull();
 
-        // Proveravamo da li je lista prazna (očekujemo da ne bude)
         assertThat(result).isNotEmpty();
 
-        // Proveravamo neke karakteristike korisnika, na primer, da li je ime prvog korisnika "John"
         assertThat(result.get(0).getName()).isEqualTo("John");
     }
 

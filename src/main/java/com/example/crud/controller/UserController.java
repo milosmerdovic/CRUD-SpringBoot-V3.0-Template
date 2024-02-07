@@ -1,9 +1,12 @@
 package com.example.crud.controller;
 
+import com.example.crud.common.ApiResponse;
 import com.example.crud.entity.User;
 import com.example.crud.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,16 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class UserController extends BaseController{
 
     @Autowired
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok(userService.getUsers());
+    public ResponseEntity<ApiResponse<List<User>>> getUsers() {
+        final StopWatch stopWatch = super.startWatch("getUsers");
+        try {
+            return super.okResponse(userService.getUsers(), "Users successfully retrieved");
+        }catch (Exception e) {
+            log.error("Error getting users", e);
+            return super.koResponse(new ApiResponse<>(), e);
+        }finally {
+            log.info(stopWatch.shortSummary());
+        }
     }
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {

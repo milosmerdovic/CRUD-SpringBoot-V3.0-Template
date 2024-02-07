@@ -28,15 +28,12 @@ public class UserServiceMockitoTest {
 
     @Test
     public void testGetAllUsersWithMock() {
-        // Mockujemo repozitorijum da vrati listu korisnika
         User user1 = new User(1l,"John", "Doe");
         User user2 = new User(2l,"Jane", "Smith");
         when(userRepository.findAll()).thenReturn(Arrays.asList(user1, user2));
 
-        // Pozivamo servis za dobijanje svih korisnika
         List<User> result = userService.getUsers();
 
-        // Proveravamo da li je rezultat jednak mockovanoj listi korisnika
         assertThat(result).contains(user1, user2);
     }
 }

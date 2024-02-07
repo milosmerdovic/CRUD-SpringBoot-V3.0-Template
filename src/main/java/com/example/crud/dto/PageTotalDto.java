@@ -4,15 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+@ToString(callSuper = true)
+public class PageTotalDto<T> extends PageDto<T> {
 
-    private String id;
-    private String name;
-    private String email;
+    private long totalCount;
 
 }

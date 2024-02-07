@@ -10,7 +10,7 @@ public interface UserService {
     /**
      * Retrieves a list of users.
      *
-     * @return  a list of User objects representing the users
+     * @return a list of User objects representing the users
      */
     List<User> getUsers();
 
