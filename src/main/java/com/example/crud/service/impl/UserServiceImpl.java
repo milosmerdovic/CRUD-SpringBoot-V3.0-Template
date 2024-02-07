@@ -4,6 +4,8 @@ import com.example.crud.entity.User;
 import com.example.crud.repository.UserRepository;
 import com.example.crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public Page<User> getUsers(PageRequest pageable) {
+        return userRepository.findAll(pageable);
     }
 
     @Override

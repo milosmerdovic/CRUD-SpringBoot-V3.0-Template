@@ -11,6 +11,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
@@ -28,13 +31,14 @@ public class UserServiceJUnitTest {
 
     @Test
     public void testGetAllUsers() {
-        List<User> result = userService.getUsers();
+        PageRequest pageable = PageRequest.of(0, 10, Sort.by("id"));
+        Page<User> result = userService.getUsers(pageable);
 
         assertThat(result).isNotNull();
 
         assertThat(result).isNotEmpty();
 
-        assertThat(result.get(0).getName()).isEqualTo("John");
+        assertThat(result.getContent().get(0).getName()).isEqualTo("John");
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.crud.service;
 
 import com.example.crud.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +14,7 @@ public interface UserService {
      *
      * @return a list of User objects representing the users
      */
-    List<User> getUsers();
+    Page<User> getUsers(PageRequest pageable);
 
     /**
      * Retrieves a user by their ID.
